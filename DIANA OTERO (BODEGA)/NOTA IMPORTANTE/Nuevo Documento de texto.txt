@@ -1,0 +1,89 @@
+==============================================================
+==============================================================
+
+AUTOR: Luisin Enrique Maza Alcalde
+
+PERTENESCO A LA ESCUELA DE INGENIERÍA INFORMÁTICA DE LA 
+UNIVERSIDAD NACIONAL DE PIURA
+
+==============================================================
+
+Pueden contactarme por la siguientes redes sociales:
+
+FACEBOOK:
+
+https://www.facebook.com/luisinenrique.mazaalcalde
+
+COMUNIDAD DE FACEBOOK:
+
+https://www.facebook.com/WebMasterLuisinEnrique
+
+==============================================================
+==============================================================
+
+PAÍS: Perú
+
+Departamento: Piura
+
+==============================================================
+==============================================================
+
+DESCRIPCIÓN DE LA APLICACIÓN:
+
+
+Les comparto esta aplicación desarrollada en JAVA SE con el
+IDE NETBEANS 6.9.1, en base a la programación orientada a 
+objetos, mas conocida como POO.
+El sistema gestor de base de datos que se utiizo es SQL SERVER 
+2008 R2 y para diseñar los reporte se utilizo IREPORT 3.5.2.
+
+==============================================================
+
+PASOS PARA PONER EN FUNCIONAMIENTO LA APLICACIÓN:
+
+
+1- RESTAURAR EL BACKUP DE BASE DE DATOS QUE SE ENCUENTRA
+EN EL DIRECTORIO"BACKUP", TENER EN CUENTA LA CREACIÓN DEL
+LOGIN DE SERVIDOR (PROEDUNP) y el USER DE BASE DE DATOS (BODEGA).
+
+SI NO QUIEREN RESTAURAR EL BACKUP LO PUEDEN HACER
+EJECUTANDO LOS ARCHIVOS RESPECTIVOS:
+
+	1.1- ARCHIVO DE CREACIÓN DE LAS TABLAS "BDBODEGA(SQL SERVER)".
+
+	1.2 ARCHIVO DE CREACIÓN DE PROCEDIMIENTOS ALMACENADOS 
+	"PROCEDIMIENTOS ALMACENDOS BODEGA".
+
+	1.3 HACER UNA CONSULTA CON LA CUAL INGRESE UN CARGO, LUEGO
+	UN EMPLEADO Y POR ULTIMO UN USUARIO CON EL
+	CUAL DESPUES SE VAN A LOGIAR DESDE LA APLICACIÓN JAVA SE.
+
+	PORQUE HACER ESTAS TRES CONSULTAS, POR COMO ESTA RELACIONADA LAS
+	TABLAS DE LA BASE DE DATOS, MIRAR LA IMAGEN DE LA BASE DE DATOS.
+	
+
+2 IMPORTAR EL PROYECTO DE LA APLICACIÓN AL NETBEANS, LA VERSIÓN
+QUE SE HA UTILIZADO PARA ESTE PROYECTO ES 6.9.1, SI INTENTAN
+IMPORTARLO CON OTRA VERSIÓN Y LES DA PROBLEMAS TENER EN CUENTA
+LA VERSIÓN, POR LAS LIBRERIAS NO HAY PROBLEMA YA QUE TODAS ESTAN
+INTEGRADAS EN EL PROYECTO DENTRO DEL DIRECTROIO "lib".
+
+
+NOTA: CON RESPECTO A LA CONEXION DE JAVA A SQL SERVER NO HAY PROBLEMA YA
+QUE UTILIZO EL DRIVER QUE ME PERMITE CONECTARME Y NO TENGO QUE CONFIGURAR
+EL JDBC DESDE WINDOWS.
+
+
+==============================================================
+==============================================================
+
+
+Eso es todo compañeros, espero le saquen provecho al codigo fuente,
+sobre todo observen con que logica de negocio esta desarrollada, como
+esta estructurado el proyecto, si se dan cuenta esta super ordenado.
+
+
+Si les sirvico no olviden dar ME GUSTA A MI COMUNIDAD E FACEBOOK.
+
+
+
