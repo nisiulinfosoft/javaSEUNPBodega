@@ -1,0 +1,261 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package DatosAcceso;
+
+import LogicaGetSet.Cliente;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Luisin Enrique
+ */
+public class DaoCliente extends Conexion {
+
+    public boolean cliente_registrar(Cliente cliente)
+    {
+        boolean respuesta = false;
+        Connection conexion=null;
+        PreparedStatement sentencia=null;
+        try
+        {
+            conexion=getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_registrar(?,?,?,?)}");
+            sentencia.setString(1,cliente.getCodigo_cli());
+            sentencia.setString(2,cliente.getRuc_cli());
+            sentencia.setString(3,cliente.getRazon_social_cli());
+            sentencia.setString(4,cliente.getDireccion_cli());
+
+            int fialUpdate=sentencia.executeUpdate();
+
+            sentencia.close();
+            conexion.close();
+
+            if(fialUpdate > 0)
+            {
+                respuesta = true;
+            }else{
+                respuesta = false;
+            }
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(NullPointerException ne){//PARA ERROR DE CODIGO
+            JOptionPane.showMessageDialog(null, "Error de Codigo :"+ne.toString());
+        }catch(Exception es){//PARA QUE NOS ARROGE LOS ERRORES EN PANTALLA Y TENGO QUE OMITIR EL NullPointerException
+            es.printStackTrace();
+        }
+        return respuesta;
+    }
+
+    public boolean cliente_editar(Cliente cliente)
+    {
+        boolean respuesta=false;
+        Connection conexion=null;
+        PreparedStatement sentencia=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_editar(?,?,?,?)}");
+            sentencia.setString(1,cliente.getCodigo_cli());
+            sentencia.setString(2,cliente.getRuc_cli());
+            sentencia.setString(3,cliente.getRazon_social_cli());
+            sentencia.setString(4,cliente.getDireccion_cli());
+
+            int fialUpdate=sentencia.executeUpdate();
+
+            sentencia.close();
+            conexion.close();
+
+            if(fialUpdate > 0)
+            {
+                respuesta=true;
+            }else{
+                respuesta=false;
+            }
+         }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(NullPointerException ne){//PARA ERROR DE CODIGO
+            JOptionPane.showMessageDialog(null, "Error de Codigo :"+ne.toString());
+        }catch(Exception es){//PARA QUE NOS ARROGE LOS ERRORES EN PANTALLA Y TENGO QUE OMITIR EL NullPointerException
+            es.printStackTrace();
+        }
+        return respuesta;
+     }
+
+    public boolean cliente_eliminar(String codigo)
+    {
+        boolean respuesta=false;
+        Connection conexion=null;
+        PreparedStatement sentencia=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_eliminar(?)}");
+            sentencia.setString(1,codigo);
+
+            int fialUpdate=sentencia.executeUpdate();
+
+            sentencia.close();
+            conexion.close();
+            if(fialUpdate > 0)
+            {
+                respuesta=true;
+            }else{
+                respuesta=false;
+            }
+       }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(NullPointerException ne){//PARA ERROR DE CODIGO
+            JOptionPane.showMessageDialog(null, "Error de Codigo :"+ne.toString());
+        }catch(Exception es){//PARA QUE NOS ARROGE LOS ERRORES EN PANTALLA Y TENGO QUE OMITIR EL NullPointerException
+            es.printStackTrace();
+        }
+        return respuesta;
+    }
+
+    public List cliente_listar()throws IOException
+    {
+        List lista=new ArrayList();
+        Connection conexion=null;
+        ResultSet resultadoQuery=null;
+        PreparedStatement sentencia=null;
+        Cliente cliente=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_listar()}");
+
+            resultadoQuery=sentencia.executeQuery();
+
+            while(resultadoQuery.next())
+            {
+              cliente=new Cliente(resultadoQuery.getString(1),resultadoQuery.getString(2),resultadoQuery.getString(3),resultadoQuery.getString(4));
+              lista.add(cliente);
+            }
+            resultadoQuery.close();
+            sentencia.close();
+            conexion.close();
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(Exception es){es.printStackTrace();es.getMessage();}
+        return lista;
+    }
+
+    public List cliente_listar_por_codigo(String codigo)throws IOException
+    {
+        List lista=new ArrayList();
+        Connection conexion=null;
+        ResultSet resultadoQuery=null;
+        PreparedStatement sentencia=null;
+        Cliente cliente=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_listar_por_codigo(?)}");
+            sentencia.setString(1,codigo);
+
+            resultadoQuery=sentencia.executeQuery();
+
+            while(resultadoQuery.next())
+            {
+              cliente=new Cliente(resultadoQuery.getString(1),resultadoQuery.getString(2),resultadoQuery.getString(3),resultadoQuery.getString(4));
+              lista.add(cliente);
+            }
+            resultadoQuery.close();
+            sentencia.close();
+            conexion.close();
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(Exception es){es.printStackTrace();es.getMessage();}
+        return lista;
+    }
+
+    public List cliente_listar_por_nombre(String nombre)throws IOException
+    {
+        List lista=new ArrayList();
+        Connection conexion=null;
+        ResultSet resultadoQuery=null;
+        PreparedStatement sentencia=null;
+        Cliente cliente=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_listar_por_nombre(?)}");
+            sentencia.setString(1,nombre);
+
+            resultadoQuery=sentencia.executeQuery();
+
+            while(resultadoQuery.next())
+            {
+              cliente=new Cliente(resultadoQuery.getString(1),resultadoQuery.getString(2),resultadoQuery.getString(3),resultadoQuery.getString(4));
+                lista.add(cliente);
+            }
+            resultadoQuery.close();
+            sentencia.close();
+            conexion.close();
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(Exception es){es.printStackTrace();es.getMessage();}
+        return lista;
+    }
+
+    public Cliente cliente_obtener_por_codigo(String codigo)
+    {
+        Connection conexion=null;
+        ResultSet resultadoQuery=null;
+        PreparedStatement sentencia=null;
+        Cliente cliente=null;
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_obtener_por_codigo(?)}");
+            sentencia.setString(1,codigo);
+
+            resultadoQuery=sentencia.executeQuery();
+
+            while(resultadoQuery.next())
+            {
+              cliente=new Cliente(resultadoQuery.getString(1),resultadoQuery.getString(2),resultadoQuery.getString(3),resultadoQuery.getString(4));
+            }
+            resultadoQuery.close();
+            sentencia.close();
+            conexion.close();
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(Exception es){es.printStackTrace();}
+        return cliente;
+    }
+
+    public String cliente_generar_codigo() {
+        Connection conexion=null;
+        ResultSet resultadoQuery=null;
+        PreparedStatement sentencia=null;
+        String codigo="";
+        try
+        {
+            conexion =getConnection();
+            sentencia=conexion.prepareStatement("{call pa_cliente_generar_codigo()}");
+            resultadoQuery=sentencia.executeQuery();
+
+            if(resultadoQuery.next())
+            {
+                codigo=resultadoQuery.getString(1);
+            }
+            resultadoQuery.close();
+            sentencia.close();
+            conexion.close();
+        }catch(SQLException e){//PARA ERROR DE CODIGO SQL
+            JOptionPane.showMessageDialog(null, "Error SQL :"+e.toString());
+        }catch(Exception es){es.printStackTrace();}
+       return codigo;
+    }
+}
